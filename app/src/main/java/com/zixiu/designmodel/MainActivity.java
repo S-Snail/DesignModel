@@ -13,6 +13,7 @@ import com.zixiu.designmodel.decorator.Component;
 import com.zixiu.designmodel.decorator.ConcreateComponent;
 import com.zixiu.designmodel.decorator.ConcreateDecorator1;
 import com.zixiu.designmodel.decorator.ConcreateDecorator2;
+import com.zixiu.designmodel.facade.Facade;
 import com.zixiu.designmodel.facroty.abstract_factory.ConcreateFactory1;
 import com.zixiu.designmodel.facroty.abstract_factory.ConcreateFactory2;
 import com.zixiu.designmodel.facroty.factory_method.ConcreateFactory;
@@ -39,7 +40,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        facade();
+    }
 
+    public void facade(){
+        Facade facade = new Facade();
+        facade.doSomethingA();
+        facade.doSomethingB();
+        facade.doSomethingC();
     }
 
     /**
@@ -49,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         Component component = new ConcreateDecorator1(new ConcreateDecorator2(new ConcreateComponent()));
         component.operate();
     }
-
 
     /**
      * 适配器模式
