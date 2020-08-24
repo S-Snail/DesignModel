@@ -8,6 +8,12 @@ import com.zixiu.designmodel.adaptee.Adapter;
 import com.zixiu.designmodel.adaptee.ConcreateTarget;
 import com.zixiu.designmodel.adaptee.ObjAdapter;
 import com.zixiu.designmodel.adaptee.Target;
+import com.zixiu.designmodel.bridge.Abstraction;
+import com.zixiu.designmodel.bridge.ConcreateImplementor1;
+import com.zixiu.designmodel.bridge.ConcreateImplementor2;
+import com.zixiu.designmodel.bridge.Implementor;
+import com.zixiu.designmodel.bridge.RefineAbstraction1;
+import com.zixiu.designmodel.bridge.RefineAbstraction2;
 import com.zixiu.designmodel.builder.Product;
 import com.zixiu.designmodel.decorator.Component;
 import com.zixiu.designmodel.decorator.ConcreateComponent;
@@ -40,10 +46,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        facade();
+        bridge();
     }
 
-    public void facade(){
+    /**
+     * 桥接模式
+     */
+    public void bridge() {
+        Implementor i1 = new ConcreateImplementor1();//加糖
+        Implementor i2 = new ConcreateImplementor2();//不加糖
+
+        Abstraction b1 = new RefineAbstraction1(i1);//大杯 - 加糖
+        Abstraction b2 = new RefineAbstraction1(i2);//大杯 - 不加糖
+
+        Abstraction s1 = new RefineAbstraction2(i1);//小杯 - 加糖
+        Abstraction s2 = new RefineAbstraction2(i2);//小杯 - 不加糖
+        b1.operator();
+        b2.operator();
+        s1.operator();
+        s2.operator();
+    }
+
+    /**
+     * 门面模式
+     */
+    public void facade() {
         Facade facade = new Facade();
         facade.doSomethingA();
         facade.doSomethingB();
