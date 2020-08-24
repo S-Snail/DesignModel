@@ -15,6 +15,9 @@ import com.zixiu.designmodel.bridge.Implementor;
 import com.zixiu.designmodel.bridge.RefineAbstraction1;
 import com.zixiu.designmodel.bridge.RefineAbstraction2;
 import com.zixiu.designmodel.builder.Product;
+import com.zixiu.designmodel.combination.Componention;
+import com.zixiu.designmodel.combination.Componsite;
+import com.zixiu.designmodel.combination.Leaf;
 import com.zixiu.designmodel.decorator.Component;
 import com.zixiu.designmodel.decorator.ConcreateComponent;
 import com.zixiu.designmodel.decorator.ConcreateDecorator1;
@@ -46,7 +49,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bridge();
+    }
+
+    /**
+     * 组合模式
+     */
+    public void component() {
+        Componention c1 = new Componsite("C盘");
+        Componention c2 = new Componsite("文件夹A");
+        Componention leaf1 = new Leaf("文件B");
+        Componention leaf2 = new Leaf("文件C");
+
+        c1.addChild(c2);
+        c2.addChild(leaf1);
+        c1.addChild(leaf2);
+
+        c1.doSomething();
+        c2.doSomething();
+        Log.d("组合模式","c1子节点长度: " + c1.getChildren().size());//2
+        Log.d("组合模式","c2子节点长度: " + c2.getChildren().size());//1
     }
 
     /**
