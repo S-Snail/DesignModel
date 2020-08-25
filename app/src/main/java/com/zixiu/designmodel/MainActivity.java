@@ -42,6 +42,9 @@ import com.zixiu.designmodel.singleton.EnumSingleTon;
 import com.zixiu.designmodel.singleton.HangrySingleTon;
 import com.zixiu.designmodel.singleton.SingleTon;
 import com.zixiu.designmodel.singleton.StaticInnerClassSingleTon;
+import com.zixiu.designmodel.template.AbstractClass;
+import com.zixiu.designmodel.template.ConcreateClass1;
+import com.zixiu.designmodel.template.ConcreateClass2;
 
 import java.lang.reflect.Proxy;
 
@@ -53,7 +56,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        agent();
+    }
+
+    /**
+     * 模版模式
+     */
+    public void template() {
+        AbstractClass abstractClass1 = new ConcreateClass1();
+        AbstractClass abstractClass2 = new ConcreateClass2();
+        abstractClass1.templete();
+        abstractClass2.templete();
     }
 
     /**
