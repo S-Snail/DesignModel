@@ -8,6 +8,10 @@ import com.zixiu.designmodel.adaptee.Adapter;
 import com.zixiu.designmodel.adaptee.ConcreateTarget;
 import com.zixiu.designmodel.adaptee.ObjAdapter;
 import com.zixiu.designmodel.adaptee.Target;
+import com.zixiu.designmodel.agent.ConcreateColleague1;
+import com.zixiu.designmodel.agent.ConcreateColleague2;
+import com.zixiu.designmodel.agent.ConcreateMediator;
+import com.zixiu.designmodel.agent.Mediator;
 import com.zixiu.designmodel.bridge.Abstraction;
 import com.zixiu.designmodel.bridge.ConcreateImplementor1;
 import com.zixiu.designmodel.bridge.ConcreateImplementor2;
@@ -49,6 +53,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        agent();
+    }
+
+    /**
+     * 中介模式
+     */
+    public void agent() {
+        Mediator mediator = new ConcreateMediator();
+        ConcreateColleague1 concreateColleague1 = new ConcreateColleague1(mediator);
+        ConcreateColleague2 concreateColleague2 = new ConcreateColleague2(mediator);
+        mediator.setConcreateColleague1(concreateColleague1);
+        mediator.setConcreateColleague2(concreateColleague2);
+
+        concreateColleague1.buyer();
     }
 
     /**
@@ -66,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         c1.doSomething();
         c2.doSomething();
-        Log.d("组合模式","c1子节点长度: " + c1.getChildren().size());//2
-        Log.d("组合模式","c2子节点长度: " + c2.getChildren().size());//1
+        Log.d("组合模式", "c1子节点长度: " + c1.getChildren().size());//2
+        Log.d("组合模式", "c2子节点长度: " + c2.getChildren().size());//1
     }
 
     /**
