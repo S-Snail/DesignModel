@@ -42,6 +42,10 @@ import com.zixiu.designmodel.singleton.EnumSingleTon;
 import com.zixiu.designmodel.singleton.HangrySingleTon;
 import com.zixiu.designmodel.singleton.SingleTon;
 import com.zixiu.designmodel.singleton.StaticInnerClassSingleTon;
+import com.zixiu.designmodel.strategy.ConcreateStrategy1;
+import com.zixiu.designmodel.strategy.ConcreateStrategy2;
+import com.zixiu.designmodel.strategy.Strategy;
+import com.zixiu.designmodel.strategy.StrategyContext;
 import com.zixiu.designmodel.template.AbstractClass;
 import com.zixiu.designmodel.template.ConcreateClass1;
 import com.zixiu.designmodel.template.ConcreateClass2;
@@ -56,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    /**
+     * 策略模式
+     */
+    private void strategy() {
+        Strategy strategy1 = new ConcreateStrategy1();
+        Strategy strategy2 = new ConcreateStrategy2();
+        StrategyContext context = new StrategyContext(strategy1);
+        context.doSomething();
+        context.setmStrategy(strategy2);
+        context.doSomething();
     }
 
     /**
