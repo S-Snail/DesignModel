@@ -22,6 +22,9 @@ import com.zixiu.designmodel.builder.Product;
 import com.zixiu.designmodel.combination.Componention;
 import com.zixiu.designmodel.combination.Componsite;
 import com.zixiu.designmodel.combination.Leaf;
+import com.zixiu.designmodel.command.ConcreateCommand1;
+import com.zixiu.designmodel.command.ConcreateCommand2;
+import com.zixiu.designmodel.command.Invoker;
 import com.zixiu.designmodel.decorator.Component;
 import com.zixiu.designmodel.decorator.ConcreateComponent;
 import com.zixiu.designmodel.decorator.ConcreateDecorator1;
@@ -60,6 +63,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        command();
+    }
+
+    /**
+     * 命令模式
+     */
+    private void command() {
+        Invoker invoker = new Invoker();
+        invoker.setmCommand(new ConcreateCommand1());
+        invoker.action();
+        invoker.setmCommand(new ConcreateCommand2());
+        invoker.action();
     }
 
     /**
