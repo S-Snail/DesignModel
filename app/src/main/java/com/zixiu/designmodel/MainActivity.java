@@ -35,6 +35,8 @@ import com.zixiu.designmodel.facroty.abstract_factory.ConcreateFactory2;
 import com.zixiu.designmodel.facroty.factory_method.ConcreateFactory;
 import com.zixiu.designmodel.facroty.factory_method.ConcreateProduct1;
 import com.zixiu.designmodel.facroty.factory_method.ConcreateProduct2;
+import com.zixiu.designmodel.memento.Caretaker;
+import com.zixiu.designmodel.memento.Originator;
 import com.zixiu.designmodel.proxy.Subject;
 import com.zixiu.designmodel.proxy.invoke_proxy.SubjecIH;
 import com.zixiu.designmodel.proxy.static_proxy.RealSubject;
@@ -63,7 +65,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        command();
+        memento();
+    }
+
+    /**
+     * 备忘录模式
+     */
+    private void memento() {
+        Originator originator = new Originator();
+        Caretaker caretaker = new Caretaker();
+        originator.setmState("状态1");
+        logState(originator);
+        Dlog("备忘录模式", "创建备忘录:");
+        caretaker.setMemento(originator.createMemento());
+        originator.setmState("状态2");
+        logState(originator);
+        Dlog("备忘录模式", "恢复状态1:");
+        originator.restoreMemento(caretaker.getMemento());
+        logState(originator);
+    }
+
+    private void logState(Originator originator) {
+        Dlog("备忘录模式", originator.getmState());
     }
 
     /**
